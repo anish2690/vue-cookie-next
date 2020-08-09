@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="../dist/vue-next-cookies.global.js"></script>
+
+    <title>Welcome Vue 3 Cookie</title>
+  </head>
+  <body>
+    <div id="cookie-app">
+      <p>
+        Please enter your name :
+        <input type="text" v-model="usernameValue" />
+        <button @click="saveUser">✅ Save Cookie</button>
+      </p>
+      <p>
+        Welcome again : {{ usernameValue }}
+        <button @click="deleteUser">🗑{{ deleteUserText }}</button>
+        {{ deleteUserState }}
+      </p>
+      </p>
+    </div>
+  </body>
+  <script type="module">
+    // esm build
+    import { VueNextCookies } from "../dist/vue-next-cookies.esm.js";
+    const { ref } = Vue;
+
+    const CookieTest = {
+      setup() {
+        const usernameValue = ref(null);
+        const deleteUserText = ref("Delete Cookie");
+        const deleteUserState = ref(null);
+        return {
+          usernameValue,
+          deleteUserText,
+          deleteUserState,
+        };
+      },
+      mounted() {
+        this.usernameValue = this.$cookie.getCookie("username");
+      },
+      methods: {
+        saveUser() {
+          this.$cookie.setCookie("username", this.usernameValue);
+        },
+        deleteUser: function () {
+          this.$cookie.removeCookie("username");
+          this.deleteUserState = "√";
+
+          setTimeout(function () {
+            location.reload();
+          }, 0.5 * 1000);
+        },
+      },
+    };
+    // VueNextCookies.VueCookies)
+    window.vm = Vue.createApp(CookieTest)
+      .use(VueNextCookies)
+      .mount("#cookie-app");
+  </script>
+</html>

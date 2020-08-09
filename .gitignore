@@ -1,0 +1,15 @@
+node_modules
+coverage
+npm-debug.log
+yarn-error.log
+.nyc_output
+coverage.lcov
+dist
+package-lock.json
+.DS_Store
+.rpt2_cache
+demo_dist
+cypress/videos
+cypress/screenshots
+demo/original.html
+temp
