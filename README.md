@@ -1,6 +1,6 @@
 # vue-cookie-next
 
-A simple Vue.js 3 plugin for handling browser cookies with typescript support
+A simple Vue 3 plugin for handling browser cookies with typescript support
 
 ## Installation
 
@@ -15,9 +15,10 @@ A simple Vue.js 3 plugin for handling browser cookies with typescript support
       <div id="cookie-app">
     </body>
     <script type="module">
-      import { VueNextCookies } from "../dist/vue-next-cookies.esm.js";
+      import { VueNextCookies } from "https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js";
       const CookieTest = {
         mounted() {
+          this.$cookie.setCookie("username", "user1")
           console.log(this.$cookie.getCookie("username"))
         },
       }
@@ -31,7 +32,9 @@ A simple Vue.js 3 plugin for handling browser cookies with typescript support
 ### Package Managers
 
 ```
-\npm install vue-next-cookies --save
+npm install vue-cookie-next
+//or
+yarn add vue-cookie-next
 ```
 
 ```ts
@@ -53,11 +56,11 @@ VueCookieNext.setCookie('hover-time',{ expire : '1s'});
 
 ## API Options
 
-syntax format: **[this].\$cookie.[method]** | **[VueCookieNext].[method]**
+syntax format: **[this | VueCookieNext].\$cookie.[method]**
 
 - Set global config
 
-`````ts
+```ts
 VueCookieNext.config({
   expire: "1d",
   path: "/",
@@ -70,52 +73,42 @@ VueCookieNext.config({
 
 - Set a cookie
 
-````
-
+```ts
 this.$cookie.setCookie(keyName, value, {
   expire: "1d",
   path: "/",
   domain: "",
   secure: "",
   sameSite: "",
-}) //return this
-
+}); //return this
 ```
 
 - Get a cookie
 
-```
-
-this.$cookie.getCookie(keyName) // return value
-
+```ts
+this.$cookie.getCookie(keyName); // return value
 ```
 
 - Remove a cookie
 
-```
-
-this.$cookie.removeCookie(keyName , {
+```ts
+this.$cookie.removeCookie(keyName, {
   path: "/",
   domain: "",
-}) // return this | false if key not found
-
+}); // return this | false if key not found
 ```
 
 - Exist a `cookie name`
 
-```
-
-this.$cookie.IsCookieAvailable(keyName) // return false or true
-
+```ts
+this.$cookie.IsCookieAvailable(keyName); // return false or true
 ```
 
 - Get All `cookie name`
 
+```ts
+this.$cookie.keys(); // return a array string
 ```
-
-this.$cookie.keys() // return a array string
-
-`````
 
 ## Example Usage
 
@@ -146,7 +139,7 @@ var user = {
   session_start_time: new Date(),
 };
 
-this.$cookie.setCookieCookie("user", user);
+this.$cookie.setCookie("user", user);
 // print user name
 console.log(this.$cookie.getCookieCookie("user").name);
 ```
@@ -243,11 +236,9 @@ this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
 }); // 3 year after, expire
 
 // input date string
-this.$cookie.setCookie(
-  "token",
-  "GH1.1.1689020474.1484362313",
-  new Date(2017, 3, 13).toUTCString()
-);
+this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
+  expire: new Date(2017, 3, 13).toUTCString(),
+});
 this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
   expire: "Sat, 13 Mar 2017 12:25:57 GMT ",
 });
@@ -258,7 +249,9 @@ this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
 ```ts
 var date = new Date();
 date.setDate(date.getDate() + 1);
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", date);
+this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
+  expire: date,
+});
 ```
 
 #### set never expire
@@ -274,7 +267,7 @@ this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", { expire: -1 });
 #### remove cookie
 
 ```ts
-this.$cookie.setCookie("token", value); // domain.com and *.doamin.com are readable
+this.$cookie.setCookie("token", "value"); // domain.com and *.doamin.com are readable
 this.$cookie.removeCookie("token"); // remove token of domain.com and *.doamin.com
 
 this.$cookie.setCookie("token", value, { domain: "domain.com" }); // only domain.com are readable
