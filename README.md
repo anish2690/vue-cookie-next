@@ -7,26 +7,24 @@ A simple Vue 3 plugin for handling browser cookies with typescript support
 ### Browser
 
 ```html
-  <html lang="en">
-    <head>
-      <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    </head>
-    <body>
-      <div id="cookie-app">
-    </body>
-    <script type="module">
-      import { VueNextCookies } from "https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js";
-      const CookieTest = {
-        mounted() {
-          this.$cookie.setCookie("username", "user1")
-          console.log(this.$cookie.getCookie("username"))
-        },
-      }
-      Vue.createApp(CookieTest)
-        .use(VueNextCookies)
-        .mount("#cookie-app");
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script type="module">
+    import { VueNextCookies } from 'https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js'
+    const CookieTest = {
+      mounted() {
+        this.$cookie.setCookie('username', 'user1')
+        console.log(this.$cookie.getCookie('username'))
+      },
+    }
+    Vue.createApp(CookieTest).use(VueNextCookies).mount('#app')
   </script>
-  </html>
+</html>
 ```
 
 ### Package Managers
@@ -42,16 +40,16 @@ import { createApp } from 'vue'
 import { VueNextCookies } from 'vue-cookie-next'
 
 import App from 'App.vue'
-const app  = createApp(App)
+const app = createApp(App)
 app.use(VueNextCookies)
-app.mount('#app)
+app.mount('#app')
 
 // set default config
-VueCookieNext.config({ expire:'7d'})
+VueCookieNext.config({ expire: '7d' })
 
 // set global cookie
-VueCookieNext.setCookie('theme','default');
-VueCookieNext.setCookie('hover-time',{ expire : '1s'});
+VueCookieNext.setCookie('theme', 'default')
+VueCookieNext.setCookie('hover-time', { expire: '1s' })
 ```
 
 ## API Options
