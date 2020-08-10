@@ -13,33 +13,34 @@
   </div>
 </template>
 <script>
-import { ref } from "vue";
+import { ref } from 'vue'
 export default {
   setup() {
-    const usernameValue = ref("");
-    const deleteUserText = ref("Delete Cookie");
-    const deleteUserState = ref(null);
+    const usernameValue = ref('')
+    const deleteUserText = ref('Delete Cookie')
+    const deleteUserState = ref(null)
     return {
       usernameValue,
       deleteUserText,
       deleteUserState,
-    };
+    }
   },
   mounted() {
-    this.usernameValue = this.$cookie.getCookie("username");
+    this.usernameValue = this.$cookie.getCookie('username')
+    console.log(this.$cookie.isCookieAvailable('username'))
   },
   methods: {
     saveUser() {
-      this.$cookie.setCookie("username", this.usernameValue);
+      this.$cookie.setCookie('username', this.usernameValue)
     },
     deleteUser: function () {
-      this.$cookie.removeCookie("username");
-      this.deleteUserState = "√";
+      this.$cookie.removeCookie('username')
+      this.deleteUserState = '√'
 
       setTimeout(function () {
-        location.reload();
-      }, 0.5 * 1000);
+        location.reload()
+      }, 0.5 * 1000)
     },
   },
-};
+}
 </script>

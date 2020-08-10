@@ -7,26 +7,24 @@ A simple Vue 3 plugin for handling browser cookies with typescript support
 ### Browser
 
 ```html
-  <html lang="en">
-    <head>
-      <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    </head>
-    <body>
-      <div id="cookie-app">
-    </body>
-    <script type="module">
-      import { VueNextCookies } from "https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js";
-      const CookieTest = {
-        mounted() {
-          this.$cookie.setCookie("username", "user1")
-          console.log(this.$cookie.getCookie("username"))
-        },
-      }
-      Vue.createApp(CookieTest)
-        .use(VueNextCookies)
-        .mount("#cookie-app");
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script type="module">
+    import { VueNextCookies } from 'https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js'
+    const CookieTest = {
+      mounted() {
+        this.$cookie.setCookie('username', 'user1')
+        console.log(this.$cookie.getCookie('username'))
+      },
+    }
+    Vue.createApp(CookieTest).use(VueNextCookies).mount('#app')
   </script>
-  </html>
+</html>
 ```
 
 ### Package Managers
@@ -42,16 +40,16 @@ import { createApp } from 'vue'
 import { VueNextCookies } from 'vue-cookie-next'
 
 import App from 'App.vue'
-const app  = createApp(App)
+const app = createApp(App)
 app.use(VueNextCookies)
-app.mount('#app)
+app.mount('#app')
 
 // set default config
-VueCookieNext.config({ expire:'7d'})
+VueCookieNext.config({ expire: '7d' })
 
 // set global cookie
-VueCookieNext.setCookie('theme','default');
-VueCookieNext.setCookie('hover-time',{ expire : '1s'});
+VueCookieNext.setCookie('theme', 'default')
+VueCookieNext.setCookie('hover-time', { expire: '1s' })
 ```
 
 ## API Options
@@ -62,12 +60,12 @@ syntax format: **[this | VueCookieNext].\$cookie.[method]**
 
 ```ts
 VueCookieNext.config({
-  expire: "1d",
-  path: "/",
-  domain: "",
-  secure: "",
-  sameSite: "",
-});
+  expire: '1d',
+  path: '/',
+  domain: '',
+  secure: '',
+  sameSite: '',
+})
 // default: expireTimes = 1d, path = '/', domain = '', secure = '', sameSite = 'Lax'
 ```
 
@@ -75,39 +73,39 @@ VueCookieNext.config({
 
 ```ts
 this.$cookie.setCookie(keyName, value, {
-  expire: "1d",
-  path: "/",
-  domain: "",
-  secure: "",
-  sameSite: "",
-}); //return this
+  expire: '1d',
+  path: '/',
+  domain: '',
+  secure: '',
+  sameSite: '',
+}) //return this
 ```
 
 - Get a cookie
 
 ```ts
-this.$cookie.getCookie(keyName); // return value
+this.$cookie.getCookie(keyName) // return value
 ```
 
 - Remove a cookie
 
 ```ts
 this.$cookie.removeCookie(keyName, {
-  path: "/",
-  domain: "",
-}); // return this | false if key not found
+  path: '/',
+  domain: '',
+}) // return this | false if key not found
 ```
 
 - Exist a `cookie name`
 
 ```ts
-this.$cookie.IsCookieAvailable(keyName); // return false or true
+this.$cookie.isCookieAvailable(keyName) // return false or true
 ```
 
 - Get All `cookie name`
 
 ```ts
-this.$cookie.keys(); // return a array string
+this.$cookie.keys() // return a array string
 ```
 
 ## Example Usage
@@ -115,18 +113,18 @@ this.$cookie.keys(); // return a array string
 #### set global config
 
 ```ts
-import { VueNextCookies } from "vue-cookie-next";
+import { VueNextCookies } from 'vue-cookie-next'
 // 30 day after, expire
-VueNextCookies.config({ expire: "30d" });
+VueNextCookies.config({ expire: '30d' })
 
 // set secure, only https works
-VueNextCookies.config({ expire: "7d", secure: true });
+VueNextCookies.config({ expire: '7d', secure: true })
 
 // 2019-03-13 expire
-VueNextCookies.config({ expire: new Date(2019, 03, 13).toUTCString() });
+VueNextCookies.config({ expire: new Date(2019, 03, 13).toUTCString() })
 
 // 30 day after, expire, '' current path , browser default
-VueNextCookies.config({ expire: 60 * 60 * 24 * 30 });
+VueNextCookies.config({ expire: 60 * 60 * 24 * 30 })
 ```
 
 #### support json object
@@ -134,14 +132,14 @@ VueNextCookies.config({ expire: 60 * 60 * 24 * 30 });
 ```ts
 var user = {
   user_id: 1,
-  name: "Ben",
-  session: "75442486-0878-440c-9db1-a7006c25a39f",
+  name: 'Ben',
+  session: '75442486-0878-440c-9db1-a7006c25a39f',
   session_start_time: new Date(),
-};
+}
 
-this.$cookie.setCookie("user", user);
+this.$cookie.setCookie('user', user)
 // print user name
-console.log(this.$cookie.getCookieCookie("user").name);
+console.log(this.$cookie.getCookieCookie('user').name)
 ```
 
 #### set expire times
@@ -155,47 +153,47 @@ console.log(this.$cookie.getCookieCookie("user").name);
 ```ts
 // default expire time: 1 day
 this.$cookie
-  .setCookie("user_session", "75442486-0878-440c-9db1-a7006c25a39f")
+  .setCookie('user_session', '75442486-0878-440c-9db1-a7006c25a39f')
   // number + d , ignore case
-  .setCookie("user_session", "75442486-0878-440c-9db1-a7006c25a39f", {
-    expire: "1d",
+  .setCookie('user_session', '75442486-0878-440c-9db1-a7006c25a39f', {
+    expire: '1d',
   })
-  .setCookie("user_session", "75442486-0878-440c-9db1-a7006c25a39f", {
-    expire: "1D",
+  .setCookie('user_session', '75442486-0878-440c-9db1-a7006c25a39f', {
+    expire: '1D',
   })
   // Base of second
-  .setCookie("user_session", "75442486-0878-440c-9db1-a7006c25a39f", {
+  .setCookie('user_session', '75442486-0878-440c-9db1-a7006c25a39f', {
     expire: 60 * 60 * 24,
   })
   // input a Date, + 1day
-  .setCookie("user_session", "75442486-0878-440c-9db1-a7006c25a39f", {
+  .setCookie('user_session', '75442486-0878-440c-9db1-a7006c25a39f', {
     expire: new Date(2017, 03, 12),
   })
   // input a date string, + 1day
-  .setCookie("user_session", "75442486-0878-440c-9db1-a7006c25a39f", {
-    expire: "Sat, 13 Mar 2017 12:25:57 GMT",
-  });
+  .setCookie('user_session', '75442486-0878-440c-9db1-a7006c25a39f', {
+    expire: 'Sat, 13 Mar 2017 12:25:57 GMT',
+  })
 ```
 
 #### set expire times, input number type
 
 ```ts
-this.$cookie.setCookie("default_unit_second", "input_value", { expire: 1 }); // 1 second after, expire
-this.$cookie.setCookie("default_unit_second", "input_value", {
+this.$cookie.setCookie('default_unit_second', 'input_value', { expire: 1 }) // 1 second after, expire
+this.$cookie.setCookie('default_unit_second', 'input_value', {
   expire: 60 + 30,
-}); // 1 minute 30 second after, expire
-this.$cookie.setCookie("default_unit_second", "input_value", {
+}) // 1 minute 30 second after, expire
+this.$cookie.setCookie('default_unit_second', 'input_value', {
   expire: 60 * 60 * 12,
-}); // 12 hour after, expire
-this.$cookie.setCookie("default_unit_second", "input_value", {
+}) // 12 hour after, expire
+this.$cookie.setCookie('default_unit_second', 'input_value', {
   expire: 60 * 60 * 24 * 30,
-}); // 1 month after, expire
+}) // 1 month after, expire
 ```
 
 #### set expire times - end of browser session
 
 ```ts
-this.$cookie.setCookie("default_unit_second", "input_value", { expire: 0 }); // end of session - use 0 or "0"!
+this.$cookie.setCookie('default_unit_second', 'input_value', { expire: 0 }) // end of session - use 0 or "0"!
 ```
 
 #### set expire times , input string type
@@ -216,90 +214,90 @@ this.$cookie.setCookie("default_unit_second", "input_value", { expire: 0 }); // 
 **not support the double value**
 
 ```javascript
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "60s",
-}); // 60 second after, expire
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "30MIN",
-}); // 30 minute after, expire, ignore case
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "24d",
-}); // 24 day after, expire
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "4m",
-}); // 4 month after, expire
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "16h",
-}); // 16 hour after, expire
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "3y",
-}); // 3 year after, expire
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: '60s',
+}) // 60 second after, expire
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: '30MIN',
+}) // 30 minute after, expire, ignore case
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: '24d',
+}) // 24 day after, expire
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: '4m',
+}) // 4 month after, expire
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: '16h',
+}) // 16 hour after, expire
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: '3y',
+}) // 3 year after, expire
 
 // input date string
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
   expire: new Date(2017, 3, 13).toUTCString(),
-});
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
-  expire: "Sat, 13 Mar 2017 12:25:57 GMT ",
-});
+})
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
+  expire: 'Sat, 13 Mar 2017 12:25:57 GMT ',
+})
 ```
 
 #### set expire support date
 
 ```ts
-var date = new Date();
-date.setDate(date.getDate() + 1);
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
+var date = new Date()
+date.setDate(date.getDate() + 1)
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
   expire: date,
-});
+})
 ```
 
 #### set never expire
 
 ```ts
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", {
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', {
   expire: Infinity,
-}); // never expire
+}) // never expire
 // never expire , only -1,Other negative Numbers are invalid
-this.$cookie.setCookie("token", "GH1.1.1689020474.1484362313", { expire: -1 });
+this.$cookie.setCookie('token', 'GH1.1.1689020474.1484362313', { expire: -1 })
 ```
 
 #### remove cookie
 
 ```ts
-this.$cookie.setCookie("token", "value"); // domain.com and *.doamin.com are readable
-this.$cookie.removeCookie("token"); // remove token of domain.com and *.doamin.com
+this.$cookie.setCookie('token', 'value') // domain.com and *.doamin.com are readable
+this.$cookie.removeCookie('token') // remove token of domain.com and *.doamin.com
 
-this.$cookie.setCookie("token", value, { domain: "domain.com" }); // only domain.com are readable
-this.$cookie.removeCookie("token", { domain: "domain.com" }); // remove token of domain.com
+this.$cookie.setCookie('token', value, { domain: 'domain.com' }) // only domain.com are readable
+this.$cookie.removeCookie('token', { domain: 'domain.com' }) // remove token of domain.com
 ```
 
 #### set other arguments
 
 ```ts
 // set path
-this.$cookie.setCookie("use_path_argument", "value", {
-  expire: "1d",
-  path: "/app",
-});
+this.$cookie.setCookie('use_path_argument', 'value', {
+  expire: '1d',
+  path: '/app',
+})
 
 // set domain
-this.$cookie.setCookie("use_path_argument", "value", { domain: "domain.com" }); // default 1 day after,expire
+this.$cookie.setCookie('use_path_argument', 'value', { domain: 'domain.com' }) // default 1 day after,expire
 
 // set secure
-this.$cookie.setCookie("use_path_argument", "value", {
+this.$cookie.setCookie('use_path_argument', 'value', {
   secure: true,
-});
+})
 
 // set sameSite - should be one of `None`, `Strict` or `Lax`. Read more https://web.dev/samesite-cookies-explained/
-this.$cookie.setCookie("use_path_argument", "value", { sameSite: "Lax" });
+this.$cookie.setCookie('use_path_argument', 'value', { sameSite: 'Lax' })
 ```
 
 #### other operation
 
 ```ts
 // check a cookie exist
-this.$cookie.IsCookieAvailable("user_session")
+this.$cookie.isCookieAvailable("user_session")
 
 // get a cookie
 this.$cookie.getCookie("user_session");
