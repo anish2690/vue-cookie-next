@@ -19,45 +19,44 @@
         <button @click="deleteUser">🗑{{ deleteUserText }}</button>
         {{ deleteUserState }}
       </p>
-      </p>
     </div>
   </body>
   <script type="module">
     // esm build
-    import { VueNextCookies } from "../dist/vue-next-cookies.esm.js";
-    const { ref } = Vue;
+    import { VueNextCookies } from '../dist/vue-next-cookies.esm.js'
+    const { ref } = Vue
 
     const CookieTest = {
       setup() {
-        const usernameValue = ref(null);
-        const deleteUserText = ref("Delete Cookie");
-        const deleteUserState = ref(null);
+        const usernameValue = ref(null)
+        const deleteUserText = ref('Delete Cookie')
+        const deleteUserState = ref(null)
         return {
           usernameValue,
           deleteUserText,
           deleteUserState,
-        };
+        }
       },
       mounted() {
-        this.usernameValue = this.$cookie.getCookie("username");
+        this.usernameValue = this.$cookie.getCookie('username')
       },
       methods: {
         saveUser() {
-          this.$cookie.setCookie("username", this.usernameValue);
+          this.$cookie.setCookie('username', this.usernameValue)
         },
         deleteUser: function () {
-          this.$cookie.removeCookie("username");
-          this.deleteUserState = "√";
+          this.$cookie.removeCookie('username')
+          this.deleteUserState = '√'
 
           setTimeout(function () {
-            location.reload();
-          }, 0.5 * 1000);
+            location.reload()
+          }, 0.5 * 1000)
         },
       },
-    };
+    }
     // VueNextCookies.VueCookies)
     window.vm = Vue.createApp(CookieTest)
       .use(VueNextCookies)
-      .mount("#cookie-app");
+      .mount('#cookie-app')
   </script>
 </html>
