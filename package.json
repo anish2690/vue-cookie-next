@@ -1,6 +1,6 @@
 {
   "name": "vue-cookie-next",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple Vue.js plugin for handling browser cookies",
   "main": "dist/vue-cookie-next.cjs.js",
   "browser": "dist/vue-cookie-next.esm.js",
@@ -21,6 +21,7 @@
     "start": "vite serve --mode production",
     "demo:build": "vite build",
     "release": "bash scripts/release.sh",
+    "build:dts": "api-extractor run --local --verbose",
     "lint": "prettier -c --parser typescript \"{src,__tests__,e2e}/**/*.[jt]s?(x)\"",
     "lint:fix": "yarn run lint --write",
     "test:types": "tsc --build tsconfig.json"
@@ -62,11 +63,13 @@
     ]
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.9.3",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "@rollup/plugin-replace": "^2.3.3",
     "@size-limit/preset-small-lib": "^4.5.5",
+    "conventional-changelog-cli": "^2.0.34",
     "pascalcase": "^1.0.0",
     "prettier": "^2.0.5",
     "rollup": "^2.23.1",
