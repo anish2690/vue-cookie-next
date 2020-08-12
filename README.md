@@ -15,14 +15,14 @@ A simple Vue 3 plugin for handling browser cookies with typescript support
     <div id="app"></div>
   </body>
   <script type="module">
-    import { VueNextCookies } from 'https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js'
+    import { VueCookieNext } from 'https://unpkg.com/vue-cookie-next@1.0.0/dist/vue-cookie-next.esm-bundler.js'
     const CookieTest = {
       mounted() {
         this.$cookie.setCookie('username', 'user1')
         console.log(this.$cookie.getCookie('username'))
       },
     }
-    Vue.createApp(CookieTest).use(VueNextCookies).mount('#app')
+    Vue.createApp(CookieTest).use(VueCookieNext).mount('#app')
   </script>
 </html>
 ```
@@ -37,11 +37,11 @@ yarn add vue-cookie-next
 
 ```ts
 import { createApp } from 'vue'
-import { VueNextCookies } from 'vue-cookie-next'
+import { VueCookieNext } from 'vue-cookie-next'
 
 import App from 'App.vue'
 const app = createApp(App)
-app.use(VueNextCookies)
+app.use(VueCookieNext)
 app.mount('#app')
 
 // set default config
@@ -113,18 +113,18 @@ this.$cookie.keys() // return a array string
 #### set global config
 
 ```ts
-import { VueNextCookies } from 'vue-cookie-next'
+import { VueCookieNext } from 'vue-cookie-next'
 // 30 day after, expire
-VueNextCookies.config({ expire: '30d' })
+VueCookieNext.config({ expire: '30d' })
 
 // set secure, only https works
-VueNextCookies.config({ expire: '7d', secure: true })
+VueCookieNext.config({ expire: '7d', secure: true })
 
 // 2019-03-13 expire
-VueNextCookies.config({ expire: new Date(2019, 03, 13).toUTCString() })
+VueCookieNext.config({ expire: new Date(2019, 03, 13).toUTCString() })
 
 // 30 day after, expire, '' current path , browser default
-VueNextCookies.config({ expire: 60 * 60 * 24 * 30 })
+VueCookieNext.config({ expire: 60 * 60 * 24 * 30 })
 ```
 
 #### support json object
@@ -312,7 +312,7 @@ this.$cookie.keys().join("\n");
 this.$cookie.keys().forEach(cookie => this.$cookie.removeCookie(cookie))
 
 // vue-cookie-next global
-[this | VueNextCookies].$cookie.[method]
+[this | VueCookieNext].$cookie.[method]
 
 ```
 
