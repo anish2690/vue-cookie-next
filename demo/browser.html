@@ -23,7 +23,7 @@
   </body>
   <script type="module">
     // esm build
-    import { VueNextCookies } from '../dist/vue-next-cookies.esm.js'
+    import { VueCookieNext } from '../dist/vue-cookie-next.esm.js'
     const { ref } = Vue
 
     const CookieTest = {
@@ -54,9 +54,9 @@
         },
       },
     }
-    // VueNextCookies.VueCookies)
+    // VueCookieNext.VueCookies)
     window.vm = Vue.createApp(CookieTest)
-      .use(VueNextCookies)
+      .use(VueCookieNext)
       .mount('#cookie-app')
   </script>
 </html>
