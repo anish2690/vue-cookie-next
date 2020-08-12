@@ -1,6 +1,6 @@
 {
   "name": "vue-cookie-next",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple Vue.js plugin for handling browser cookies",
   "main": "dist/vue-cookie-next.cjs.js",
   "browser": "dist/vue-cookie-next.esm.js",
