@@ -28,6 +28,7 @@ export default {
   mounted() {
     this.usernameValue = this.$cookie.getCookie('username')
     console.log(this.$cookie.isCookieAvailable('username'))
+    console.log(this)
   },
   methods: {
     saveUser() {
