@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { VueCookieNext } from './@/'
+import { VueCookieNext } from '/@'
 console.log(VueCookieNext)
 const app = createApp(App)
 app.use(VueCookieNext)
