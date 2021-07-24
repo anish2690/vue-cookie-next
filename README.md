@@ -52,6 +52,21 @@ VueCookieNext.setCookie('theme', 'default')
 VueCookieNext.setCookie('hover-time', { expire: '1s' })
 ```
 
+### Composition API
+
+```ts
+import { defineComponent } from 'vue'
+import { useCookie } from 'vue-cookie-next'
+
+defineComponent({
+  setup() {
+    const cookie = useCookie()
+    cookie.setCookie('theme', 'dark')
+    cookie.removeCookie('hover-time')
+  },
+});
+```
+
 ## API Options
 
 syntax format: **[this | VueCookieNext].\$cookie.[method]**
