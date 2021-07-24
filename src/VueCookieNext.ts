@@ -50,6 +50,7 @@ const defaultConfig: CookieConfigOptions = {
 export const VueCookieNext: IVueCookieNext = {
   install: function (app: App) {
     app.config.globalProperties.$cookie = this
+    app.provide('cookie', this)
   },
   config: function (options: CookieConfigOptions) {
     const { expire, path, domain, secure, sameSite } = options
