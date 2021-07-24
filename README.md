@@ -60,11 +60,11 @@ import { useCookie } from 'vue-cookie-next'
 
 defineComponent({
   setup() {
-    const cookie = useCookie()
-    cookie.setCookie('theme', 'dark')
-    cookie.removeCookie('hover-time')
+    const { setCookie, removeCookie } = useCookie()
+    setCookie('theme', 'dark')
+    removeCookie('hover-time')
   },
-});
+})
 ```
 
 ## API Options
