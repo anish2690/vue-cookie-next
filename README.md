@@ -56,7 +56,7 @@ VueCookieNext.setCookie('hover-time', { expire: '1s' })
 
 ```ts
 import { defineComponent } from 'vue'
-import { useApi } from 'vue-cookie-next'
+import { useCookie } from 'vue-cookie-next'
 
 defineComponent({
   setup() {
