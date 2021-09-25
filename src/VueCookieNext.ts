@@ -14,7 +14,7 @@ export interface IVueCookieNext {
   /**
    * Set a cookie
    */
-  setCookie(keyName: keyName, value: string, options?: SetCookieOptions): this
+  setCookie(keyName: keyName, value: string| Object, options?: SetCookieOptions): this
 
   /**
    * Get a cookie
@@ -90,7 +90,7 @@ export const VueCookieNext: IVueCookieNext = {
   },
   setCookie: function (
     keyName: keyName,
-    value: string,
+    value: string | Object,
     options?: SetCookieOptions
   ) {
     let { expire: expireTimes, path, domain, secure, sameSite } = options || {}
