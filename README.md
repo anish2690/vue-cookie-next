@@ -154,7 +154,7 @@ var user = {
 
 this.$cookie.setCookie('user', user)
 // print user name
-console.log(this.$cookie.getCookieCookie('user').name)
+console.log(this.$cookie.getCookie('user').name)
 ```
 
 #### set expire times
