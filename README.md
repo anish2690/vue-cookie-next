@@ -133,7 +133,7 @@ import { VueCookieNext } from 'vue-cookie-next'
 VueCookieNext.config({ expire: '30d' })
 
 // set secure, only https works
-VueCookieNext.config({ expire: '7d', secure: true })
+VueCookieNext.config({ expire: '7d', secure: "true" })
 
 // 2019-03-13 expire
 VueCookieNext.config({ expire: new Date(2019, 03, 13).toUTCString() })
@@ -301,7 +301,7 @@ this.$cookie.setCookie('use_path_argument', 'value', { domain: 'domain.com' }) /
 
 // set secure
 this.$cookie.setCookie('use_path_argument', 'value', {
-  secure: true,
+  secure: "true",
 })
 
 // set sameSite - should be one of `None`, `Strict` or `Lax`. Read more https://web.dev/samesite-cookies-explained/
